@@ -4,6 +4,8 @@ description: A new Flutter project.
 dependencies:
   flutter:
     sdk: flutter
+  video_launcher: "^0.3.0"
+  path_provider: "^0.2.1+1"
 
 dev_dependencies:
   flutter_test:
@@ -20,6 +22,15 @@ flutter:
       - assets/Slide1.jpg
       - assets/Slide2.jpg
       - assets/Slide3.jpg
+      - assets/nivel1.jpg
+      - assets/nivel2.jpg
+      - assets/nivel3.jpg
+      - assets/nivel4.jpg
+      - assets/test.mp4
+      - assets/nivel1.mp4
+      - assets/nivel2.mp4
+      - assets/nivel3.mp4
+      - assets/nivel4.mp4
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the Icons class.
