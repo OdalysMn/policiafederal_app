@@ -182,6 +182,7 @@ class RegistrationPageState extends State<RegistrationPage> {
     }
 
     if (formOK) {
+
       showDialog(
         context: context,
         child: new AlertDialog(
