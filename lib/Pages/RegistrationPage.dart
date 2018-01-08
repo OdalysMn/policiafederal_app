@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:policiafederal_app/Pages/LevelsPage.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -182,7 +183,17 @@ class RegistrationPageState extends State<RegistrationPage> {
     }
 
     if (formOK) {
-      showDialog(
+
+      Navigator.of(context).pushReplacement(
+        new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new LevelsPage();
+          },
+        ),
+      );
+
+
+      /*showDialog(
         context: context,
         child: new AlertDialog(
           title: new Text('Éxito'),
@@ -194,7 +205,7 @@ class RegistrationPageState extends State<RegistrationPage> {
               '\nTu sexo es: $sexShowed' +
               '\nTu ocupación es: $occupationShowed'),
         ),
-      );
+      );*/
     } else {
       showDialog(
         context: context,
