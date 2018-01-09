@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
-import 'package:policiafederal_app/Pages/TextQuizPage.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
+import 'package:policiafederal_app/Pages/ImageQuizPage.dart';
 
-
-
-class ImageQuizPage extends StatefulWidget {
+class TrueFalseQuizPage extends StatefulWidget {
   Map questionObject;
   int activityNumber;
 
-  ImageQuizPage({Key key, this.questionObject, this.activityNumber})
+  TrueFalseQuizPage({Key key, this.questionObject, this.activityNumber})
       : super(key: key);
 
   @override
-  ImageQuizPageState createState() => new ImageQuizPageState(
+  TrueFalseQuizPageState createState() => new TrueFalseQuizPageState(
       questionObject: questionObject, activityNumber: activityNumber);
 }
 
-class ImageQuizPageState extends State<ImageQuizPage> {
+class TrueFalseQuizPageState extends State<TrueFalseQuizPage> {
   Map questionObject;
   String question;
   List options;
@@ -34,7 +32,7 @@ class ImageQuizPageState extends State<ImageQuizPage> {
     });
   }
 
-  ImageQuizPageState({Key key, this.questionObject, this.activityNumber});
+  TrueFalseQuizPageState({Key key, this.questionObject, this.activityNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -64,14 +62,6 @@ class ImageQuizPageState extends State<ImageQuizPage> {
               children: <Widget>[
                 new Column(
                   children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[0]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                     new Row(
                       children: <Widget>[
                         new Radio<int>(
@@ -94,14 +84,6 @@ class ImageQuizPageState extends State<ImageQuizPage> {
                 ),
                 new Column(
                   children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[1]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                     new Row(
                       children: <Widget>[
                         new Radio<int>(
@@ -121,67 +103,7 @@ class ImageQuizPageState extends State<ImageQuizPage> {
                       ],
                     ),
                   ],
-                ),
-                new Column(
-                  children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[2]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    new Row(
-                      children: <Widget>[
-                        new Radio<int>(
-                          value: 2,
-                          groupValue: myGroupValue,
-                          onChanged: (int changedValue) {
-                            setState(() {
-                              myGroupValue = changedValue;
-                            });
-                          },
-                        ),
-                        new Flexible(
-                          child: new Text(
-                            options[2]['text'],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                new Column(
-                  children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[3]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    new Row(
-                      children: <Widget>[
-                        new Radio<int>(
-                          value: 3,
-                          groupValue: myGroupValue,
-                          onChanged: (int changedValue) {
-                            setState(() {
-                              myGroupValue = changedValue;
-                            });
-                          },
-                        ),
-                        new Flexible(
-                          child: new Text(
-                            options[3]['text'],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                )
               ],
             ),
           ),
@@ -208,16 +130,35 @@ class ImageQuizPageState extends State<ImageQuizPage> {
   void _evaluateAnswer() {
     if (myGroupValue == answer) {
 
-      if(new Utilities().getCurrentActivity() == 0){
+      int currentLevel = new Utilities().getCurrentLevel();
 
-        new Utilities().setCurrentActivity(2);
+      showDialog(
+        context: context,
+        child: new AlertDialog(
+          title: new Text('¡Felicidades!'),
+          content: new Text('Nivel $currentLevel concluido'),
+          actions: [
+            new FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: new Text('ACEPTAR'),
+            )
+          ],
+        ),
+      );
 
-        Navigator.of(context).push(new MaterialPageRoute(
+      if(new Utilities().getCurrentActivity() == 12){
+
+        new Utilities().setCurrentActivity(12);
+
+        /*Navigator.of(context).push(new MaterialPageRoute(
           builder: (BuildContext context) {
-            return new TextQuizPage(
-                questionObject: Quizzes.allQuizzes[1], activityNumber: 2);
+            return new TrueFalseQuizPage(
+                questionObject: Quizzes.allQuizzes[11], activityNumber: 12);
           },
-        ));
+        ));*/
+
       }
 
       else{

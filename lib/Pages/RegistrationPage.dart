@@ -184,9 +184,6 @@ class RegistrationPageState extends State<RegistrationPage> {
 
     if (formOK) {
 
-<<<<<<< HEAD
-      showDialog(
-=======
       Navigator.of(context).pushReplacement(
         new MaterialPageRoute(
           builder: (BuildContext context) {
@@ -195,21 +192,6 @@ class RegistrationPageState extends State<RegistrationPage> {
         ),
       );
 
-
-      /*showDialog(
->>>>>>> 3af7f5efb00fc3d7ce1624195af06b26e571fbb9
-        context: context,
-        child: new AlertDialog(
-          title: new Text('Éxito'),
-          content: new Text('Bienvenido ' +
-              nameController.text +
-              '\nTu correo electrónico es: ' +
-              emailController.text +
-              '\nTu edad es: $ageShowed' +
-              '\nTu sexo es: $sexShowed' +
-              '\nTu ocupación es: $occupationShowed'),
-        ),
-      );*/
     } else {
       showDialog(
         context: context,

@@ -8,6 +8,8 @@ import 'package:policiafederal_app/Pages/ImageQuizPage.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
 import 'package:video_launcher/video_launcher.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:policiafederal_app/Singeltons/Utilities.dart';
+import 'package:policiafederal_app/Pages/TextQuizPage.dart';
 
 class LevelsPage extends StatefulWidget {
   @override
@@ -335,12 +337,67 @@ class LevelsPageState extends State<LevelsPage> {
   }
 
   void _initQuiz(int i, BuildContext context) {
+
+    new Utilities().setCurrentLevel(i);
     //Check what level is saved on the Singleton
-    Navigator.of(context).push(new MaterialPageRoute(
-      builder: (BuildContext context) {
-        return new ImageQuizPage(
-            questionObject: Quizzes.allQuizzes[0], activityNumber: 1);
-      },
-    ));
+    int currentLevel = new Utilities().getCurrentLevel();
+
+    if(currentLevel == 1){
+
+      if(new Utilities().getCurrentActivity() == null){
+
+        new Utilities().setCurrentActivity(0);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new ImageQuizPage(
+                questionObject: Quizzes.allQuizzes[0], activityNumber: 1);
+          },
+        ));
+
+      }
+    }else if(currentLevel == 2){
+
+      if(new Utilities().getCurrentActivity() == null){
+
+        new Utilities().setCurrentActivity(5);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[4], activityNumber: 5);
+          },
+        ));
+
+      }
+    } else if (currentLevel == 3){
+
+      if(new Utilities().getCurrentActivity() == null){
+
+        new Utilities().setCurrentActivity(8);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[7], activityNumber: 8);
+          },
+        ));
+
+      }
+    } else if (currentLevel == 4){
+
+      if(new Utilities().getCurrentActivity() == null){
+
+        new Utilities().setCurrentActivity(11);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[10], activityNumber: 11);
+          },
+        ));
+
+      }
+    }
   }
 }

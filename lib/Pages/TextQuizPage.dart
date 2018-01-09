@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
-import 'package:policiafederal_app/Pages/TextQuizPage.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
+import 'package:policiafederal_app/Pages/ImageQuizPage.dart';
+import 'package:policiafederal_app/Pages/TrueFalseQuizPage.dart';
 
-
-
-class ImageQuizPage extends StatefulWidget {
+class TextQuizPage extends StatefulWidget {
   Map questionObject;
   int activityNumber;
 
-  ImageQuizPage({Key key, this.questionObject, this.activityNumber})
+  TextQuizPage({Key key, this.questionObject, this.activityNumber})
       : super(key: key);
 
   @override
-  ImageQuizPageState createState() => new ImageQuizPageState(
+  TextQuizPageState createState() => new TextQuizPageState(
       questionObject: questionObject, activityNumber: activityNumber);
 }
 
-class ImageQuizPageState extends State<ImageQuizPage> {
+class TextQuizPageState extends State<TextQuizPage> {
   Map questionObject;
   String question;
   List options;
@@ -34,7 +33,7 @@ class ImageQuizPageState extends State<ImageQuizPage> {
     });
   }
 
-  ImageQuizPageState({Key key, this.questionObject, this.activityNumber});
+  TextQuizPageState({Key key, this.questionObject, this.activityNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -64,14 +63,6 @@ class ImageQuizPageState extends State<ImageQuizPage> {
               children: <Widget>[
                 new Column(
                   children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[0]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                     new Row(
                       children: <Widget>[
                         new Radio<int>(
@@ -94,14 +85,6 @@ class ImageQuizPageState extends State<ImageQuizPage> {
                 ),
                 new Column(
                   children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[1]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                     new Row(
                       children: <Widget>[
                         new Radio<int>(
@@ -124,14 +107,6 @@ class ImageQuizPageState extends State<ImageQuizPage> {
                 ),
                 new Column(
                   children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[2]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                     new Row(
                       children: <Widget>[
                         new Radio<int>(
@@ -154,14 +129,6 @@ class ImageQuizPageState extends State<ImageQuizPage> {
                 ),
                 new Column(
                   children: <Widget>[
-                    new Container(
-                      height: 100.0,
-                      width: 150.0,
-                      child: new Image.asset(
-                        options[3]['image'],
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                     new Row(
                       children: <Widget>[
                         new Radio<int>(
@@ -208,16 +175,83 @@ class ImageQuizPageState extends State<ImageQuizPage> {
   void _evaluateAnswer() {
     if (myGroupValue == answer) {
 
-      if(new Utilities().getCurrentActivity() == 0){
+      if(new Utilities().getCurrentActivity() == 2){
 
-        new Utilities().setCurrentActivity(2);
+        new Utilities().setCurrentActivity(3);
 
         Navigator.of(context).push(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new TextQuizPage(
-                questionObject: Quizzes.allQuizzes[1], activityNumber: 2);
+                questionObject: Quizzes.allQuizzes[2], activityNumber: 3);
           },
         ));
+
+      }else if(new Utilities().getCurrentActivity() == 3){
+
+        new Utilities().setCurrentActivity(4);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new ImageQuizPage(
+                questionObject: Quizzes.allQuizzes[3], activityNumber: 4);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 5){
+
+        new Utilities().setCurrentActivity(6);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[5], activityNumber: 6);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 6){
+
+        new Utilities().setCurrentActivity(7);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new ImageQuizPage(
+                questionObject: Quizzes.allQuizzes[6], activityNumber: 7);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 8){
+
+        new Utilities().setCurrentActivity(9);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[8], activityNumber: 9);
+          },
+        ));
+
+      }else if(new Utilities().getCurrentActivity() == 9){
+
+        new Utilities().setCurrentActivity(10);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[9], activityNumber: 10);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 11){
+
+        new Utilities().setCurrentActivity(12);
+
+        Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TrueFalseQuizPage(
+                questionObject: Quizzes.allQuizzes[11], activityNumber: 12);
+          },
+        ));
+
       }
 
       else{
@@ -225,21 +259,29 @@ class ImageQuizPageState extends State<ImageQuizPage> {
         int currentLevel = new Utilities().getCurrentLevel();
 
         showDialog(
-          context: context,
-          child: new AlertDialog(
-            title: new Text('¡Felicidades!'),
-            content: new Text('Nivel $currentLevel concluido'),
-            actions: [
-              new FlatButton(
-                onPressed: () {
+        context: context,
+        child: new AlertDialog(
+          title: new Text('¡Felicidades!'),
+          content: new Text('Nivel $currentLevel concluido'),
+          actions: [
+            new FlatButton(
+              onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: new Text('ACEPTAR'),
+              child: new Text('ACEPTAR'),
               )
             ],
           ),
         );
       }
+
+
+
+
+
+
+
+
     } else {
       showDialog(
         context: context,
