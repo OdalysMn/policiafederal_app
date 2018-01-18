@@ -159,6 +159,16 @@ class RegistrationPageState extends State<RegistrationPage> {
     }
   }
 
+  bool _validateEmail(String email){
+
+    RegExp exp = new RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+
+    bool result = exp.hasMatch(email);
+
+    return result;
+
+  }
+
   void _doSubmit() {
     var formOK = true;
 
@@ -167,6 +177,11 @@ class RegistrationPageState extends State<RegistrationPage> {
     }
 
     if (emailController.text.length <= 0) {
+      formOK = false;
+    }
+
+    if(!_validateEmail(emailController.text)){
+
       formOK = false;
     }
 
@@ -203,4 +218,6 @@ class RegistrationPageState extends State<RegistrationPage> {
       );
     }
   }
+
+
 }

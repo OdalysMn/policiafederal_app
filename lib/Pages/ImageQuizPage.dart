@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
 import 'package:policiafederal_app/Pages/TextQuizPage.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
+import 'package:policiafederal_app/Pages/LevelsPage.dart';
 
 
 
@@ -208,11 +209,18 @@ class ImageQuizPageState extends State<ImageQuizPage> {
   void _evaluateAnswer() {
     if (myGroupValue == answer) {
 
+      int completedActivities = new Utilities().getCompletedActivities();
+
+      if(completedActivities != null){
+
+        new Utilities().setCompletedActivities(completedActivities+1);
+      }
+
       if(new Utilities().getCurrentActivity() == 0){
 
         new Utilities().setCurrentActivity(2);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new TextQuizPage(
                 questionObject: Quizzes.allQuizzes[1], activityNumber: 2);
@@ -233,6 +241,15 @@ class ImageQuizPageState extends State<ImageQuizPage> {
               new FlatButton(
                 onPressed: () {
                   Navigator.of(context).pop();
+
+                  Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return new LevelsPage();
+                      },
+                    ),
+                  );
+
                 },
                 child: new Text('ACEPTAR'),
               )

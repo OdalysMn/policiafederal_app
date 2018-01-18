@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
 import 'package:policiafederal_app/Pages/ImageQuizPage.dart';
+import 'package:policiafederal_app/Pages/LevelsPage.dart';
 
 class TrueFalseQuizPage extends StatefulWidget {
   Map questionObject;
@@ -130,17 +131,32 @@ class TrueFalseQuizPageState extends State<TrueFalseQuizPage> {
   void _evaluateAnswer() {
     if (myGroupValue == answer) {
 
+      int completedActivities = new Utilities().getCompletedActivities();
+
+      if(completedActivities != null){
+
+        new Utilities().setCompletedActivities(completedActivities+1);
+      }
+
       int currentLevel = new Utilities().getCurrentLevel();
 
       showDialog(
         context: context,
         child: new AlertDialog(
           title: new Text('¡Felicidades!'),
-          content: new Text('Nivel $currentLevel concluido'),
+          content: new Text('Has concluido esta actividad, visita las otras areas del museo'),
           actions: [
             new FlatButton(
               onPressed: () {
                 Navigator.of(context).pop();
+
+                Navigator.of(context).pushReplacement(
+                  new MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return new LevelsPage();
+                    },
+                  ),
+                );
               },
               child: new Text('ACEPTAR'),
             )
@@ -169,11 +185,19 @@ class TrueFalseQuizPageState extends State<TrueFalseQuizPage> {
           context: context,
           child: new AlertDialog(
             title: new Text('¡Felicidades!'),
-            content: new Text('Nivel $currentLevel concluido'),
+            content: new Text('Has concluido esta actividad, visita las otras areas del museo'),
             actions: [
               new FlatButton(
                 onPressed: () {
                   Navigator.of(context).pop();
+
+                  Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return new LevelsPage();
+                      },
+                    ),
+                  );
                 },
                 child: new Text('ACEPTAR'),
               )

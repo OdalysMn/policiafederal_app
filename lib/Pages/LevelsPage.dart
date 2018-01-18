@@ -19,12 +19,23 @@ class LevelsPage extends StatefulWidget {
 class LevelsPageState extends State<LevelsPage> {
   var localAssetPath;
   int toPlay;
+  String percentage;
 
   @override
   Widget build(BuildContext context) {
+    percentage = _calculatePercentage();
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Niveles'),
+        actions: [
+          new FlatButton(
+              onPressed: () {},
+              child: new Text(
+                '$percentage%',
+                style: new TextStyle(color: Colors.white, fontSize: 20.0),
+              ))
+        ],
         backgroundColor: Colors.indigo[900],
       ),
       body: new ListView(
@@ -337,67 +348,60 @@ class LevelsPageState extends State<LevelsPage> {
   }
 
   void _initQuiz(int i, BuildContext context) {
+    print('_initQuiz()');
 
     new Utilities().setCurrentLevel(i);
     //Check what level is saved on the Singleton
     int currentLevel = new Utilities().getCurrentLevel();
 
-    if(currentLevel == 1){
+    print('currentLevel: $currentLevel');
 
-      if(new Utilities().getCurrentActivity() == null){
+    if (currentLevel == 1) {
+      new Utilities().setCurrentActivity(0);
 
-        new Utilities().setCurrentActivity(0);
+      Navigator.of(context).pushReplacement(new MaterialPageRoute(
+        builder: (BuildContext context) {
+          return new ImageQuizPage(
+              questionObject: Quizzes.allQuizzes[0], activityNumber: 1);
+        },
+      ));
+    } else if (currentLevel == 2) {
+      new Utilities().setCurrentActivity(5);
 
-        Navigator.of(context).push(new MaterialPageRoute(
-          builder: (BuildContext context) {
-            return new ImageQuizPage(
-                questionObject: Quizzes.allQuizzes[0], activityNumber: 1);
-          },
-        ));
+      Navigator.of(context).pushReplacement(new MaterialPageRoute(
+        builder: (BuildContext context) {
+          return new TextQuizPage(
+              questionObject: Quizzes.allQuizzes[4], activityNumber: 5);
+        },
+      ));
+    } else if (currentLevel == 3) {
+      new Utilities().setCurrentActivity(8);
 
-      }
-    }else if(currentLevel == 2){
+      Navigator.of(context).pushReplacement(new MaterialPageRoute(
+        builder: (BuildContext context) {
+          return new TextQuizPage(
+              questionObject: Quizzes.allQuizzes[7], activityNumber: 8);
+        },
+      ));
+    } else if (currentLevel == 4) {
+      new Utilities().setCurrentActivity(11);
 
-      if(new Utilities().getCurrentActivity() == null){
-
-        new Utilities().setCurrentActivity(5);
-
-        Navigator.of(context).push(new MaterialPageRoute(
-          builder: (BuildContext context) {
-            return new TextQuizPage(
-                questionObject: Quizzes.allQuizzes[4], activityNumber: 5);
-          },
-        ));
-
-      }
-    } else if (currentLevel == 3){
-
-      if(new Utilities().getCurrentActivity() == null){
-
-        new Utilities().setCurrentActivity(8);
-
-        Navigator.of(context).push(new MaterialPageRoute(
-          builder: (BuildContext context) {
-            return new TextQuizPage(
-                questionObject: Quizzes.allQuizzes[7], activityNumber: 8);
-          },
-        ));
-
-      }
-    } else if (currentLevel == 4){
-
-      if(new Utilities().getCurrentActivity() == null){
-
-        new Utilities().setCurrentActivity(11);
-
-        Navigator.of(context).push(new MaterialPageRoute(
-          builder: (BuildContext context) {
-            return new TextQuizPage(
-                questionObject: Quizzes.allQuizzes[10], activityNumber: 11);
-          },
-        ));
-
-      }
+      Navigator.of(context).pushReplacement(new MaterialPageRoute(
+        builder: (BuildContext context) {
+          return new TextQuizPage(
+              questionObject: Quizzes.allQuizzes[10], activityNumber: 11);
+        },
+      ));
     }
+  }
+
+  String _calculatePercentage() {
+    int completedActivities = new Utilities().getCompletedActivities();
+
+    if (completedActivities != null) {
+      return ((completedActivities / Quizzes.allQuizzes.length) * 100.round())
+          .toStringAsFixed(0);
+    } else
+      return '0';
   }
 }

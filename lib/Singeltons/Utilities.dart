@@ -9,8 +9,9 @@ class Utilities {
 
   Utilities._internal();
 
-  int currentActivity;
-  int currentLevel;
+  int currentActivity = 0;
+  int currentLevel = 0;
+  int completedActivities = 0;
 
   int getCurrentActivity() {
     return this.currentActivity;
@@ -26,6 +27,14 @@ class Utilities {
 
   setCurrentLevel(currentLevel) {
     this.currentLevel = currentLevel;
+  }
+
+  int getCompletedActivities(){
+    return this.completedActivities;
+  }
+
+  setCompletedActivities(int completedActivities){
+    this.completedActivities = completedActivities;
   }
 
 

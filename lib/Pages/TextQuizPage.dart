@@ -3,6 +3,7 @@ import 'package:policiafederal_app/QuizResources/Quizzes.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
 import 'package:policiafederal_app/Pages/ImageQuizPage.dart';
 import 'package:policiafederal_app/Pages/TrueFalseQuizPage.dart';
+import 'package:policiafederal_app/Pages/LevelsPage.dart';
 
 class TextQuizPage extends StatefulWidget {
   Map questionObject;
@@ -175,11 +176,18 @@ class TextQuizPageState extends State<TextQuizPage> {
   void _evaluateAnswer() {
     if (myGroupValue == answer) {
 
+      int completedActivities = new Utilities().getCompletedActivities();
+
+      if(completedActivities != null){
+
+        new Utilities().setCompletedActivities(completedActivities+1);
+      }
+
       if(new Utilities().getCurrentActivity() == 2){
 
         new Utilities().setCurrentActivity(3);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new TextQuizPage(
                 questionObject: Quizzes.allQuizzes[2], activityNumber: 3);
@@ -190,7 +198,7 @@ class TextQuizPageState extends State<TextQuizPage> {
 
         new Utilities().setCurrentActivity(4);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new ImageQuizPage(
                 questionObject: Quizzes.allQuizzes[3], activityNumber: 4);
@@ -201,7 +209,7 @@ class TextQuizPageState extends State<TextQuizPage> {
 
         new Utilities().setCurrentActivity(6);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new TextQuizPage(
                 questionObject: Quizzes.allQuizzes[5], activityNumber: 6);
@@ -212,7 +220,7 @@ class TextQuizPageState extends State<TextQuizPage> {
 
         new Utilities().setCurrentActivity(7);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new ImageQuizPage(
                 questionObject: Quizzes.allQuizzes[6], activityNumber: 7);
@@ -223,7 +231,7 @@ class TextQuizPageState extends State<TextQuizPage> {
 
         new Utilities().setCurrentActivity(9);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new TextQuizPage(
                 questionObject: Quizzes.allQuizzes[8], activityNumber: 9);
@@ -234,7 +242,7 @@ class TextQuizPageState extends State<TextQuizPage> {
 
         new Utilities().setCurrentActivity(10);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new TextQuizPage(
                 questionObject: Quizzes.allQuizzes[9], activityNumber: 10);
@@ -245,7 +253,7 @@ class TextQuizPageState extends State<TextQuizPage> {
 
         new Utilities().setCurrentActivity(12);
 
-        Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
             return new TrueFalseQuizPage(
                 questionObject: Quizzes.allQuizzes[11], activityNumber: 12);
@@ -267,6 +275,15 @@ class TextQuizPageState extends State<TextQuizPage> {
             new FlatButton(
               onPressed: () {
                   Navigator.of(context).pop();
+
+                  Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return new LevelsPage();
+                      },
+                    ),
+                  );
+
                 },
               child: new Text('ACEPTAR'),
               )
@@ -274,13 +291,6 @@ class TextQuizPageState extends State<TextQuizPage> {
           ),
         );
       }
-
-
-
-
-
-
-
 
     } else {
       showDialog(

@@ -1,9 +1,13 @@
 package com.yourcompany.policiafederalapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugins.GeneratedPluginRegistrant;
+
 
 public class MainActivity extends FlutterActivity {
   @Override
@@ -11,4 +15,30 @@ public class MainActivity extends FlutterActivity {
     super.onCreate(savedInstanceState);
     GeneratedPluginRegistrant.registerWith(this);
   }
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.permissionsDialog));
+
+
+        builder.setMessage("¿Seguro que desea salir de la aplicación?")
+                .setTitle("Salir");
+
+        builder.setPositiveButton("Salir", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+                MainActivity.super.onBackPressed();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+    }
 }

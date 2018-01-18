@@ -5,5 +5,11 @@
              Flutter draws its first frame -->
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
+
+
+    <style name="permissionsDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>
 
