@@ -260,6 +260,83 @@ class TextQuizPageState extends State<TextQuizPage> {
           },
         ));
 
+      } else if(new Utilities().getCurrentActivity() == 15){
+
+        new Utilities().setCurrentActivity(16);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[15], activityNumber: 16);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 17){
+
+        new Utilities().setCurrentActivity(18);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[17], activityNumber: 18);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 18){
+
+        new Utilities().setCurrentActivity(19);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TrueFalseQuizPage(
+                questionObject: Quizzes.allQuizzes[18], activityNumber: 19);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 21){
+
+        new Utilities().setCurrentActivity(22);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[21], activityNumber: 22);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 22){
+
+        new Utilities().setCurrentActivity(23);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new ImageQuizPage(
+                questionObject: Quizzes.allQuizzes[22], activityNumber: 23);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 25){
+
+        new Utilities().setCurrentActivity(26);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[25], activityNumber: 26);
+          },
+        ));
+
+      } else if(new Utilities().getCurrentActivity() == 26){
+
+        new Utilities().setCurrentActivity(27);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new ImageQuizPage(
+                questionObject: Quizzes.allQuizzes[26], activityNumber: 27);
+          },
+        ));
+
       }
 
       else{

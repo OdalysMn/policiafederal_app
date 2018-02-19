@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:policiafederal_app/Pages/TrueFalseQuizPage.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
 import 'package:policiafederal_app/Pages/TextQuizPage.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
@@ -224,6 +225,46 @@ class ImageQuizPageState extends State<ImageQuizPage> {
           builder: (BuildContext context) {
             return new TextQuizPage(
                 questionObject: Quizzes.allQuizzes[1], activityNumber: 2);
+          },
+        ));
+      } else if(new Utilities().getCurrentActivity() == 13){
+
+        new Utilities().setCurrentActivity(14);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TrueFalseQuizPage(
+                questionObject: Quizzes.allQuizzes[13], activityNumber: 14);
+          },
+        ));
+      } else if(new Utilities().getCurrentActivity() == 13){
+
+        new Utilities().setCurrentActivity(14);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TrueFalseQuizPage(
+                questionObject: Quizzes.allQuizzes[13], activityNumber: 14);
+          },
+        ));
+      } else if(new Utilities().getCurrentActivity() == 23){
+
+        new Utilities().setCurrentActivity(24);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TrueFalseQuizPage(
+                questionObject: Quizzes.allQuizzes[23], activityNumber: 24);
+          },
+        ));
+      } else if(new Utilities().getCurrentActivity() == 27){
+
+        new Utilities().setCurrentActivity(28);
+
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new TrueFalseQuizPage(
+                questionObject: Quizzes.allQuizzes[27], activityNumber: 28);
           },
         ));
       }

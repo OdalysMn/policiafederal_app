@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:policiafederal_app/Pages/TextQuizPage.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
 import 'package:policiafederal_app/Pages/ImageQuizPage.dart';
@@ -138,46 +139,27 @@ class TrueFalseQuizPageState extends State<TrueFalseQuizPage> {
         new Utilities().setCompletedActivities(completedActivities+1);
       }
 
-      int currentLevel = new Utilities().getCurrentLevel();
+      if(new Utilities().getCurrentActivity() == 14){
 
-      showDialog(
-        context: context,
-        child: new AlertDialog(
-          title: new Text('¡Felicidades!'),
-          content: new Text('Has concluido esta actividad, visita las otras areas del museo'),
-          actions: [
-            new FlatButton(
-              onPressed: () {
-                Navigator.of(context).pop();
+        new Utilities().setCurrentActivity(15);
 
-                Navigator.of(context).pushReplacement(
-                  new MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return new LevelsPage();
-                    },
-                  ),
-                );
-              },
-              child: new Text('ACEPTAR'),
-            )
-          ],
-        ),
-      );
-
-      if(new Utilities().getCurrentActivity() == 12){
-
-        new Utilities().setCurrentActivity(12);
-
-        /*Navigator.of(context).push(new MaterialPageRoute(
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
           builder: (BuildContext context) {
-            return new TrueFalseQuizPage(
-                questionObject: Quizzes.allQuizzes[11], activityNumber: 12);
+            return new TextQuizPage(
+                questionObject: Quizzes.allQuizzes[14], activityNumber: 15);
           },
-        ));*/
+        ));
+      } else if(new Utilities().getCurrentActivity() == 19){
 
-      }
+        new Utilities().setCurrentActivity(20);
 
-      else{
+        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          builder: (BuildContext context) {
+            return new ImageQuizPage(
+                questionObject: Quizzes.allQuizzes[19], activityNumber: 20);
+          },
+        ));
+      } else if(new Utilities().getCurrentActivity() == 28){
 
         int currentLevel = new Utilities().getCurrentLevel();
 
@@ -185,7 +167,7 @@ class TrueFalseQuizPageState extends State<TrueFalseQuizPage> {
           context: context,
           child: new AlertDialog(
             title: new Text('¡Felicidades!'),
-            content: new Text('Has concluido esta actividad, visita las otras areas del museo'),
+            content: new Text('Completaste todos los niveles en el juego, puedes visitar otras áreas en el Museo.'),
             actions: [
               new FlatButton(
                 onPressed: () {
@@ -198,6 +180,37 @@ class TrueFalseQuizPageState extends State<TrueFalseQuizPage> {
                       },
                     ),
                   );
+
+                },
+                child: new Text('ACEPTAR'),
+              )
+            ],
+          ),
+        );
+      }
+
+      else{
+
+        int currentLevel = new Utilities().getCurrentLevel();
+
+        showDialog(
+          context: context,
+          child: new AlertDialog(
+            title: new Text('¡Felicidades!'),
+            content: new Text('Nivel $currentLevel concluido'),
+            actions: [
+              new FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+
+                  Navigator.of(context).pushReplacement(
+                    new MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return new LevelsPage();
+                      },
+                    ),
+                  );
+
                 },
                 child: new Text('ACEPTAR'),
               )

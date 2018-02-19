@@ -30,6 +30,14 @@ flutter:
       - assets/nivel2.mp4
       - assets/nivel3.mp4
       - assets/nivel4.mp4
+      - assets/nivel5.jpg
+      - assets/nivel6.jpg
+      - assets/nivel7.jpg
+      - assets/nivel8.jpeg
+      - assets/nivel5.mp4
+      - assets/nivel6.mp4
+      - assets/nivel7.mp4
+      - assets/nivel8.mp4
       - assets/topiles.jpg
       - assets/federal_police.jpg
       - assets/ejercito_mexicano.jpg
@@ -42,6 +50,23 @@ flutter:
       - assets/vehiculoB.jpg
       - assets/vehiculoC.jpg
       - assets/vehiculoD.jpg
+      - assets/binomiosMarina.jpg
+      - assets/oficialCanino.jpg
+      - assets/perroBombero.jpg
+      - assets/policiaMontada.jpg
+      - assets/deslizamientoLadera.jpg
+      - assets/inundacion.jpg
+      - assets/tormentaNieve.jpeg
+      - assets/tormentaTropical.jpg
+      - assets/alberca.jpeg
+      - assets/caminadora.jpg
+      - assets/casita.jpeg
+      - assets/tina.jpeg
+      - assets/imagen1.png
+      - assets/imagen2.jpg
+      - assets/imagen3.jpeg
+      - assets/imagen4.jpg
+      - assets/puzzle.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
