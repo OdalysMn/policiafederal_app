@@ -20,7 +20,7 @@ class LevelsPageState extends State<LevelsPage> {
   var localAssetPath;
   int toPlay;
   String percentage;
-  static const platform = const MethodChannel('com.yourcompany.policiafederalapp/puzzle');
+  static const channel = const MethodChannel('com.yourcompany.policiafederalapp/general');
 
   @override
   Widget build(BuildContext context) {
@@ -626,50 +626,21 @@ class LevelsPageState extends State<LevelsPage> {
 
   Future<Null> _callPuzzle() async {
     try {
-      bool isSolved = await platform.invokeMethod('openPuzzle');
+      bool isSolved = await channel.invokeMethod('openPuzzle');
     } on PlatformException catch (e, s) {}
 
   }
   Future _playVideo(int i) async {
-    /*if (await canLaunchVideo('assets/test.mp4', isLocal: true)) {
-      print('Success');
-      print('Could not launch ' + 'test.mp4');
-      await launchVideo('assets/test.mp4', isLocal: true);
-    } else {
-      print('Could not launch ' + 'test.mp4');
-      throw 'Could not launch ' + 'test.mp4';
-    }*/
 
-    toPlay = i;
-    await copyLocalAsset();
+    Map params = {'level': i};
+    print('Params are: ' + params.toString());
+    try {
+      await channel.invokeMethod('openVideo', params);
+    } on PlatformException catch (e, s) {}
+
   }
 
-  Future copyLocalAsset() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final file = new File("${dir.path}/test.mp4");
-    final videoData =
-        await rootBundle.load('assets/nivel' + toPlay.toString() + '.mp4');
-    final bytes = videoData.buffer.asUint8List();
-    file.writeAsBytes(bytes, flush: true);
-    setState(() {
-      localAssetPath = file.path;
-      _launchLocalAsset();
-    });
-  }
 
-  _launchLocalAsset() {
-    setState(() {
-      _launchVideo(localAssetPath, isLocal: true);
-    });
-  }
-
-  Future<Null> _launchVideo(String url, {bool isLocal: false}) async {
-    if (await canLaunchVideo(url, isLocal: isLocal)) {
-      await launchVideo(url, isLocal: isLocal);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   void _initQuiz(int i, BuildContext context) {
     print('_initQuiz()');

@@ -172,7 +172,7 @@ class RegistrationPageState extends State<RegistrationPage> {
   void _doSubmit() {
     var formOK = true;
 
-    if (nameController.text.length <= 0) {
+    /*if (nameController.text.length <= 0) {
       formOK = false;
     }
 
@@ -195,7 +195,7 @@ class RegistrationPageState extends State<RegistrationPage> {
 
     if (occupationShowed == null) {
       formOK = false;
-    }
+    }*/
 
     if (formOK) {
 
