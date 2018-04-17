@@ -3,11 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:path/path.dart';
 import 'package:policiafederal_app/Pages/ImageQuizPage.dart';
 import 'package:policiafederal_app/QuizResources/Quizzes.dart';
-import 'package:video_launcher/video_launcher.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:policiafederal_app/Singeltons/Utilities.dart';
 import 'package:policiafederal_app/Pages/TextQuizPage.dart';
 
@@ -621,8 +618,6 @@ class LevelsPageState extends State<LevelsPage> {
       ),
     );
   }
-
-
 
   Future<Null> _callPuzzle() async {
     try {

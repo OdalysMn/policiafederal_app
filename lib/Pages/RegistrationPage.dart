@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:policiafederal_app/Pages/LevelsPage.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -7,7 +10,9 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class RegistrationPageState extends State<RegistrationPage> {
-  var ages = [];
+  static const channel = const MethodChannel('com.yourcompany.policiafederalapp/general');
+
+  List<DropdownMenuItem<int>> ages = [];
   var sexs = [
     new DropdownMenuItem(
       child: new Text('Masculino'),
@@ -169,10 +174,11 @@ class RegistrationPageState extends State<RegistrationPage> {
 
   }
 
-  void _doSubmit() {
+  Future<Null> _doSubmit() async{
+
     var formOK = true;
 
-    /*if (nameController.text.length <= 0) {
+    if (nameController.text.length <= 0) {
       formOK = false;
     }
 
@@ -195,17 +201,27 @@ class RegistrationPageState extends State<RegistrationPage> {
 
     if (occupationShowed == null) {
       formOK = false;
-    }*/
+    }
 
     if (formOK) {
 
-      Navigator.of(context).pushReplacement(
-        new MaterialPageRoute(
-          builder: (BuildContext context) {
-            return new LevelsPage();
-          },
-        ),
-      );
+      String datos = "Nombre: "+ nameController.text+ " Email: "+ emailController.text +" Edad: "+ ageShowed.toString() + " Genero: "+sexShowed +" Ocupación: "+ occupationShowed;
+
+      Map params = {'datos': datos};
+
+      try {
+        int result = await channel.invokeMethod('writePDF',params);
+
+        if(result > -1){
+          Navigator.of(context).pushReplacement(
+            new MaterialPageRoute(
+              builder: (BuildContext context) {
+                return new LevelsPage();
+              },
+            ),
+          );
+        }
+      } on PlatformException catch (e, s) {}
 
     } else {
       showDialog(
